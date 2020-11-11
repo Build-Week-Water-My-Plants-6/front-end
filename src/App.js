@@ -12,11 +12,11 @@ function App() {
       </header>
       <div className="container mt-6">
         {/* Signup */}
-        {/* Login */}
+        {/* Login Component needs form state management */}
         {/* Dashboard */}
 
         <Router>
-          {/* Private Route */}
+          {/* I'll setup our routes here after we get closer to finishing our components */}
         </Router>
       </div>
     </div>
