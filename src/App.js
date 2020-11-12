@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-
+import Login from "./components/Login"
 import './App.css';
 import '../node_modules/bulma/css/bulma.min.css';
 
@@ -16,6 +16,7 @@ function App() {
         {/* Dashboard */}
 
         <Router>
+        <Route exact path="/Login" component={Login}/>
           {/* I'll setup our routes here after we get closer to finishing our components */}
         </Router>
       </div>
