@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './Login.css';
-
 function Login() {
     // Setup component state for the form management
 
