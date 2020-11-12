@@ -1,0 +1,13 @@
+.box-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-header-center {
+    flex: 1;
+}
+
+.settings-button {
+    cursor: pointer;
+}
