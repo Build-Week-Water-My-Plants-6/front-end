@@ -1,0 +1,9 @@
+.plant-form .field {
+    margin: 0 auto;
+    max-width: 500px !important;
+}
+
+.plant-form {
+    margin: 0 auto;
+    max-width: 800px;
+}

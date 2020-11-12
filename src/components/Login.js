@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import * as yup from "yup"
 import axios from "axios"
 
-import './Login.css';
-
 function Login() {
     // Setup component state for the form management
 
