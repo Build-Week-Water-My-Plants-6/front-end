@@ -1,12 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-
-import Login from "./components/Login"
-
-
 import Dashboard from './components/Dashboard';
 import Settings from './components/Settings';
 import Login from './components/Login';
+import Signup from './components/Signup'
 
 
 import './App.css';
@@ -26,11 +23,11 @@ function App() {
         {/* Settings page (Users can update their phone number & password) */}
 
         <Router>
-        <Route exact path="/Login" component={Login}/>
           {/* I'll setup our routes here after we get closer to finishing our components */}
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/settings" component={Settings} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} />
         </Router>
       </div>
     </div>

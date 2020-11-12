@@ -31,13 +31,9 @@ function Login() {
     //schema used for all validation to determine whether the input is valid or not
 
     const formSchema = yup.object().shape({
-        username: yup.string().required("Username is required").min(2,"Please input at least 2 characters"),
-        password: yup
-        .string()
-        .required("Please input a password")
-        // .min(5)
-        .matches(/^[0-9A-Za-z]*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?][0-9a-zA-Z]*$/,
-        "Password Must Contain at least 5 Characters, One Uppercase, One Lowercase, One Number and one special case Character")
+        username: yup.string().required("Username is required"),
+        password: yup.string().required("Please input your password")
+
 
     })
 
@@ -45,7 +41,7 @@ function Login() {
 
     const validateChange = event => {
         yup
-        //get the value of schema at key "event.value.username" -> "username="
+        //get the value of schema at key "event.value.name" -> "name="
         .reach(formSchema, event.target.name)
         //value in input
         .validate(event.target.value)
@@ -115,7 +111,7 @@ function Login() {
             <form className="mx-6" onSubmit={formSubmit}>
             {serverError ? <p className="error">{serverError}
             </p> : null}
-                <div class="field">
+                <div className="field">
                     <label class="label" htmlForm="username"></label>
                         Username
                     <div class="control">
@@ -128,15 +124,7 @@ function Login() {
                         value={formState.username}
                         />
                         {errors.username.length > 0 ? <p className="error">{errors.username}
-
-            <form className="mx-6">
-                <div className="field">
-                    <label className="label">Username</label>
-                    <div className="control">
-                        <input className="input" type="text" />
-
-                    </div>
-
+                        </p> : null}
                 </div>
 
                 <div class="field">
@@ -154,7 +142,8 @@ function Login() {
                         </p> : null}
                     </div>
                 </div>
-                <div className="control has-text-centered mt-5 mb-1">
+                <div className="field is-flex is-justify-content-center mt-5 mb-1">
+                <div className="control">
                     <button 
                     className="button"
                     id="submit"
@@ -162,17 +151,8 @@ function Login() {
                     type="submit">
                         Login
                         </button>
-
-                <div className="field">
-                    <label className="label">Password</label>
-                    <div className="control">
-                        <input className="input" type="text" />
-                    </div>
-                </div>
-                <div className="field is-flex is-justify-content-center mt-5 mb-1">
-                    <div className="control">
-                        <button className="button">Login</button>
-                    </div>
+                        </div>
+                        </div>
 
                 </div>
             </form>
