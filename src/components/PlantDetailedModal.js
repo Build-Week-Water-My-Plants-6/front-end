@@ -44,6 +44,8 @@ function PlantDetailedModal({ isModalOpen, setIsModalOpen }) {
     const closeModal = () => {
         setIsModalOpen(false);
     };
+
+    Modal.setAppElement('#root');
     return (
         <Modal isOpen={isModalOpen} style={modalStyle}>
             <div>
