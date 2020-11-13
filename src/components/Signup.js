@@ -7,9 +7,10 @@ function Signup() {
 
     //initial form state
     const initialFormState = {
+        fullname:"",
         username:"",
         password:"",
-        phoneNumber:"",
+        phonenumber:"",
     }
 
     //temp state used to set state
@@ -30,6 +31,10 @@ function Signup() {
     //schema used for all validation to determine whether the input is valid or not
 
     const formSchema = yup.object().shape({
+        fullname: yup
+        .string()
+        .required()
+        .min(2),
         username: yup
         .string()
         .required("Username is required")
@@ -38,7 +43,7 @@ function Signup() {
         .string()
         .required("Please input your password")
         .min(5, "Must contain at least 5 characters"),
-        phoneNumber: yup
+        phonenumber: yup
         .string()
         .required()
         .min(10, "Please input a valid phone number")
@@ -100,7 +105,7 @@ function Signup() {
         event.persist();
         const newUserData = {
             ...formState,
-            [event.target.name]: event.target.name === "phoneNumber" ?event.target.value.replace(/\D/,''): event.target.value
+            [event.target.name]: event.target.name === "phonenumber" ?event.target.value.replace(/\D/,''): event.target.value
         };
         validateChange(event);
         setFormState(newUserData)
@@ -117,6 +122,21 @@ function Signup() {
             <form className="mx-6" onSubmit={formSubmit}>
             {serverError ? <p className="error">{serverError}
             </p> : null}
+            <div className="field">
+                    <label className="label" htmlform="fullname">Name</label>
+                    <div className="control">
+                        <input 
+                        className="input"
+                        type="text" 
+                        id="fullname"
+                        name="fullname"
+                        onChange={inputChange}
+                        value={formState.fullname}
+                        />
+                        {errors.fullname.length > 0 ? <p className="error">{errors.fullname}
+                        </p> : null}
+                </div>
+                </div>
                 <div className="field">
                     <label className="label" htmlform="username">Username</label>
                     <div className="control">
@@ -130,6 +150,7 @@ function Signup() {
                         />
                         {errors.username.length > 0 ? <p className="error">{errors.username}
                         </p> : null}
+                    </div>
                 </div>
 
                 <div className="field">
@@ -148,19 +169,19 @@ function Signup() {
                     </div>
                 </div>
                 <div className="field">
-                    <label className="label" htmlform="phoneNumber">Phone Number</label>
+                    <label className="label" htmlform="phonenumber">Phone Number</label>
                     <div className="control">
                         <input 
                         maxLength="10"
                         className="input"
                         type="text" 
-                        id="phoneNumber"
-                        name="phoneNumber"
+                        id="phonenumber"
+                        name="phonenumber"
                         onChange={inputChange}
-                        value={formState.phoneNumber}
+                        value={formState.phonenumber}
                         onkeypress="return isNumber(event)"
                         />
-                        {errors.phoneNumber.length > 0 ? <p className="error">{errors.phoneNumber}
+                        {errors.phonenumber.length > 0 ? <p className="error">{errors.phonenumber}
                         </p> : null}
                 </div>
                 </div>
@@ -176,7 +197,7 @@ function Signup() {
                             </button>
                         </div>
                     </div>
-                </div>
+                
             </form>
         </div>
     );
