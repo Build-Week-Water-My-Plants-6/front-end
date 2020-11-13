@@ -9,6 +9,7 @@ function Signup() {
     const initialFormState = {
         username:"",
         password:"",
+        phoneNumber:"",
     }
 
     //temp state used to set state
@@ -38,8 +39,11 @@ function Signup() {
         .required("Please input your password")
         .min(5)
         .matches(/^[0-9A-Za-z]*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?][0-9a-zA-Z]*$/,
-        "Password Must Contain at least 5 Characters, One Uppercase, One Lowercase, One Number and one special case Character")
-
+        "Password Must Contain at least 5 Characters, One Uppercase, One Lowercase, One Number and one special case Character"),
+        phoneNumber: yup
+        .string()
+        .required()
+        .min(10, "Please input a valid phone number")
 
     })
 
@@ -98,15 +102,13 @@ function Signup() {
         event.persist();
         const newUserData = {
             ...formState,
-            [event.target.name]: event.target.value
+            [event.target.name]: event.target.name === "phoneNumber" ?event.target.value.replace(/\D/,''): event.target.value
         };
         validateChange(event);
         setFormState(newUserData)
     };
 
-
-
-    // Write event handlers (onChange, onSubmit)
+    
 
     return (
         <div className="login box py-5 px-6">
@@ -131,6 +133,7 @@ function Signup() {
                         {errors.username.length > 0 ? <p className="error">{errors.username}
                         </p> : null}
                 </div>
+
                 <div className="field">
                     <label className="label" htmlform="password">Password</label>
                     <div className="control">
@@ -146,6 +149,24 @@ function Signup() {
                         </p> : null}
                     </div>
                 </div>
+                <div className="field">
+                    <label className="label" htmlform="phoneNumber">Phone Number</label>
+                    <div className="control">
+                        <input 
+                        maxLength="10"
+                        className="input"
+                        type="text" 
+                        id="phoneNumber"
+                        name="phoneNumber"
+                        onChange={inputChange}
+                        value={formState.phoneNumber}
+                        onkeypress="return isNumber(event)"
+                        />
+                        {errors.phoneNumber.length > 0 ? <p className="error">{errors.phoneNumber}
+                        </p> : null}
+                </div>
+                </div>
+
                 <div className="field is-flex is-justify-content-center mt-5 mb-1">
                     <div className="control">
                             <button

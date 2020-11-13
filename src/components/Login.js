@@ -97,9 +97,6 @@ function Login() {
     };
 
 
-
-    // Write event handlers (onChange, onSubmit)
-
     return (
         <div className="login box py-5 px-6">
             <div className="box-header has-text-centered mb-6">
