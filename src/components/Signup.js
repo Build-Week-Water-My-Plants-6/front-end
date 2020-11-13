@@ -37,9 +37,7 @@ function Signup() {
         password: yup
         .string()
         .required("Please input your password")
-        .min(5)
-        .matches(/^[0-9A-Za-z]*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?][0-9a-zA-Z]*$/,
-        "Password Must Contain at least 5 Characters, One Uppercase, One Lowercase, One Number and one special case Character"),
+        .min(5, "Must contain at least 5 characters"),
         phoneNumber: yup
         .string()
         .required()
