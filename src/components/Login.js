@@ -110,11 +110,10 @@ function Login() {
             {serverError ? <p className="error">{serverError}
             </p> : null}
                 <div className="field">
-                    <label class="label" htmlForm="username"></label>
-                        Username
-                    <div class="control">
+                    <label className="label" htlmform="username">Username</label>
+                    <div className="control">
                         <input 
-                        class="input" 
+                        className="input"
                         type="text" 
                         id="username"
                         name="username"
@@ -125,11 +124,11 @@ function Login() {
                         </p> : null}
                 </div>
 
-                <div class="field">
-                    <label class="label" htlmForm="password">Password</label>
-                    <div class="control">
-                        <input 
-                        class="input" 
+                <div className="field">
+                    <label className="label" htlmform="password">Password</label>
+                    <div className="control">
+                        <input
+                        className="input"
                         type="text" 
                         name="password"
                         id="password"
@@ -141,17 +140,16 @@ function Login() {
                     </div>
                 </div>
                 <div className="field is-flex is-justify-content-center mt-5 mb-1">
-                <div className="control">
-                    <button 
-                    className="button"
-                    id="submit"
-                    disabled={isButtonDisabled}
-                    type="submit">
-                        Login
+                    <div className="control">
+                        <button
+                        className="button"
+                        id="submit"
+                        disabled={isButtonDisabled}
+                        type="submit">
+                            Login
                         </button>
-                        </div>
-                        </div>
-
+                    </div>
+                </div>
                 </div>
             </form>
         </div>
