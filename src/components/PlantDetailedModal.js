@@ -30,7 +30,7 @@ const modalStyle = {
         fontWeight: '600',
         textAlign: 'center',
         width: '60%',
-        cursor: 'pointer'
+        cursor: 'text'
     },
     inputWrapper: {
         display: 'flex',
