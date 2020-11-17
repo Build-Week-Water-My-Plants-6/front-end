@@ -45,3 +45,14 @@ export const putPlant = (id, plant) => (dispatch) => {
             dispatch({ type: PUT_PLANT_FAILURE, payload: err.response.data.message });
         });
 };
+
+export const delPlant = (id) => (dispatch) => {
+    dispatch({ type: DEL_PLANT_START });
+    axiosAuth().delete(`/api/plants/${id}`)
+        .then(res => {
+            dispatch({ type: DEL_PLANT_SUCCESS, payload: id });
+        })
+        .catch(err => {
+            dispatch({ type: DEL_PLANT_FAILURE, payload: err.response.data.message });
+        });
+};

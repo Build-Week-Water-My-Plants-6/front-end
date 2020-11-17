@@ -35,12 +35,12 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-function PlantCard({ plant, onPlantClick }) {
+function PlantCard({ plant, onPlantClick, onPlantDelClick }) {
     const classes = useStyles();
     return (
         <Paper className={classes.paper}>
             <div className={classes.topWrapper}>
-                <Clear className={classes.clear} />
+                <Clear className={classes.clear} onClick={() => onPlantDelClick(plant.id)} />
                 <img className={classes.img} src="https://vibrant-mayer-1ae68b.netlify.app/images/gallery/thumbs/03.jpg" alt={plant.plant_name} />
             </div>
             <div onClick={() => {onPlantClick(plant.id)}} className={classes.bottomWrapper}>

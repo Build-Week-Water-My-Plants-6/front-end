@@ -70,7 +70,7 @@ export default function reducer(state = initialState, action) {
             };
 
         case PUT_PLANT_SUCCESS:
-            const newArr = state.plants.filter(plant => {
+            const newPutArr = state.plants.filter(plant => {
                 if (plant.id === action.payload.id) {
                     return false;
                 } else  {
@@ -80,7 +80,7 @@ export default function reducer(state = initialState, action) {
 
             return {
                 ...state,
-                plants: [...newArr, action.payload],
+                plants: [...newPutArr, action.payload],
                 fetching: false
             };
 
@@ -89,7 +89,35 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 error: action.payload,
                 fetching: false
-            }
+            };
+
+        case DEL_PLANT_START:
+            return {
+                ...state,
+                fetching: true
+            };
+
+        case DEL_PLANT_SUCCESS:
+            const newDelArr = state.plants.filter(plant => {
+                if (plant.id === action.payload) {
+                    return false;
+                } else  {
+                    return true;
+                }
+            });
+
+            return {
+                ...state,
+                plants: [...newDelArr],
+                fetching: false
+            };
+
+        case DEL_PLANT_FAILURE:
+            return {
+                ...state,
+                error: action.payload,
+                fetching: false
+            };
 
         default:
             return {

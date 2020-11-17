@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import { getUserPlants } from '../actions/index';
+import { getUserPlants, delPlant } from '../actions/index';
 import fetchPlant from '../api/fetchPlant';
 
 import PlantList from './PlantList';
@@ -31,6 +31,10 @@ function Dashboard(props) {
             });
     };
 
+    function onPlantDelClick(id) {
+        props.delPlant(id);
+    };
+
     useEffect(() => {
         props.getUserPlants();
         console.log(props.plants)
@@ -48,7 +52,7 @@ function Dashboard(props) {
             </div>
             <div className="plants-wrapper mb-5">
                 <h3 className="title is-5 has-text-centered mb-5">My Plants</h3>
-                <PlantList plants={props.plants} onPlantClick={onPlantClick} />
+                <PlantList plants={props.plants} onPlantClick={onPlantClick} onPlantDelClick={onPlantDelClick} />
             </div>
             {isShowPlantForm === false &&
                 <div className="has-text-centered mt-6">
@@ -67,4 +71,4 @@ function mapStateToProps(state) {
     };
 };
 
-export default connect(mapStateToProps, { getUserPlants })(Dashboard);
+export default connect(mapStateToProps, { getUserPlants, delPlant })(Dashboard);
