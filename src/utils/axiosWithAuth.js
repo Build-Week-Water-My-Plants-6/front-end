@@ -6,7 +6,7 @@ export default function axiosWithAuth() {
     const token = localStorage.getItem('token');
     return axios.create({
         headers: {
-            Authorization: 'Bearer ${token}'
+            Authorization: `Bearer ${token}`
         },
         baseURL: BASE_URL
     });
