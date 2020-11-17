@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Modal from 'react-modal';
 import { Clear } from '@material-ui/icons';
+
+import { connect } from 'react-redux';
+import { putPlant } from '../actions/index';
 
 const modalStyle = {
     overlay: {
@@ -39,20 +42,48 @@ const modalStyle = {
     },
 };
 
-function PlantDetailedModal({ isModalOpen, setIsModalOpen }) {
+const initialFormValues = {
+    name: "",
+    species: "",
+    waterSchedule: ""
+};
+
+function PlantDetailedModal(props) {
+    const [formValues, setFormValues] = useState(initialFormValues);
+
+    /* FORM EVENT HANDLERS */
+
+    function onChange(e) {
+        setFormValues({ ...formValues, [e.target.name]: e.target.value });
+    }
+
+    function onSubmit(e) {
+        e.preventDefault();
+        const newPlant = {
+            ...formValues
+        };
+        props.putPlant(props.plant.id, newPlant);
+        props.setIsModalOpen(false);
+    }
+
     /* MODAL EVENT HANDLERS */
-    const closeModal = () => {
-        setIsModalOpen(false);
+    function closeModal() {
+        props.setIsModalOpen(false);
     };
+
+    /* SIDE EFFECTS */
+    useEffect(() => {
+        setFormValues({ name: props.plant.plant_name, species: props.plant.plant_species, waterSchedule: props.plant.water_schedule });
+    }, [props.plant]);
 
     Modal.setAppElement('#root');
     return (
-        <Modal isOpen={isModalOpen} style={modalStyle}>
+        <Modal isOpen={props.isModalOpen} style={modalStyle}>
             <div>
                 <div className="box-header mb-5">
                     <div className="has-text-centered box-header-center">
                         <div style={modalStyle.inputWrapper}>
-                            <input value="Aloe Vera" style={modalStyle.input} autoFocus className="blinking" />
+                            <input name="name" value={formValues.name} onChange={onChange} style={modalStyle.input} autoFocus className="blinking" />
                         </div>
                     </div>
                     <div className="has-text-centered is-flex">
@@ -60,17 +91,17 @@ function PlantDetailedModal({ isModalOpen, setIsModalOpen }) {
                     </div>
                 </div>
             </div>
-            <form className="container mx-6">
+            <form onSubmit={onSubmit} className="container mx-6">
                 <div className="field">
                     <label className="label">Species</label>
                     <div className="control">
-                        <input className="input" type="text" />
+                        <input name="species" value={formValues.species} onChange={onChange} className="input" type="text" />
                     </div>
                 </div>
                 <div className="field">
                     <label className="label">H2O Frequency</label>
                     <div className="control">
-                        <input className="input" type="number" />
+                        <input name="waterSchedule" value={formValues.waterSchedule} onChange={onChange} className="input" type="text" />
                     </div>
                 </div>
                 <div className="field is-flex is-justify-content-center mt-5 mb-1">
@@ -83,4 +114,4 @@ function PlantDetailedModal({ isModalOpen, setIsModalOpen }) {
     );
 };
 
-export default PlantDetailedModal;
+export default connect(null, { putPlant })(PlantDetailedModal);
