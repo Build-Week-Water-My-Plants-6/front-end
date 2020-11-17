@@ -56,7 +56,7 @@ function PlantForm(props) {
                     <div className="control">
                         <input name="waterSchedule" value={formValues.waterSchedule} onChange={onChange} className="input" type="string" />
                     </div>
-                    <p class="help">Water in X days. For example, "Water in 3 days"</p>
+                    <p className="help">Water in X days. For example, "Water in 3 days"</p>
                 </div>
                 <div className="field is-flex is-justify-content-center mt-5 mb-1">
                     <div className="control">
