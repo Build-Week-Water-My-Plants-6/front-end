@@ -5,7 +5,7 @@ import { Clear } from '@material-ui/icons';
 
 const useStyles = makeStyles(() => ({
     paper: {
-        width: 150,
+        width: 170,
         display: 'flex',
         flexDirection: 'column',
     },
@@ -30,20 +30,21 @@ const useStyles = makeStyles(() => ({
         cursor: 'pointer',
         padding: '20px',
         display: 'flex',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 }));
 
-function PlantCard() {
+function PlantCard({ plant, onPlantClick }) {
     const classes = useStyles();
     return (
         <Paper className={classes.paper}>
             <div className={classes.topWrapper}>
                 <Clear className={classes.clear} />
-                <img className={classes.img} src="https://vibrant-mayer-1ae68b.netlify.app/images/gallery/thumbs/03.jpg" alt="Portait of plant" />
+                <img className={classes.img} src="https://vibrant-mayer-1ae68b.netlify.app/images/gallery/thumbs/03.jpg" alt={plant.plant_name} />
             </div>
-            <div className={classes.bottomWrapper}>
-                <span className="title is-6">Aloe Vera</span>
+            <div onClick={() => {onPlantClick(plant.id)}} className={classes.bottomWrapper}>
+                <span className="title is-6 has-text-centered">{plant.plant_name}</span>
             </div>
         </Paper>
     )

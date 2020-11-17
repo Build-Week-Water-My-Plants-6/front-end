@@ -4,30 +4,18 @@ import { Grid } from '@material-ui/core';
 
 import PlantCard from './PlantCard';
 
-function PlantList() {
+function PlantList({ plants, onPlantClick }) {
     return (
         <Grid container justify="center" spacing={3}>
-            <Grid item>
-                <PlantCard />
-            </Grid>
-            <Grid item>
-                <PlantCard />
-            </Grid>
-            <Grid item>
-                <PlantCard />
-            </Grid>
-            <Grid item>
-                <PlantCard />
-            </Grid>
-            <Grid item>
-                <PlantCard />
-            </Grid>
-            <Grid item>
-                <PlantCard />
-            </Grid>
-            <Grid item>
-                <PlantCard />
-            </Grid>
+            {
+                plants.map(plant => {
+                    return (
+                        <Grid key={plant.id} item>
+                            <PlantCard plant={plant} onPlantClick={onPlantClick} />
+                        </Grid>
+                    );
+                })
+            }
         </Grid>
     );
 };
