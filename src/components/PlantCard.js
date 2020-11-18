@@ -30,6 +30,7 @@ const useStyles = makeStyles(() => ({
         cursor: 'pointer',
         padding: '20px',
         display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center'
     }
@@ -44,7 +45,10 @@ function PlantCard({ plant, onPlantClick, onPlantDelClick }) {
                 <img className={classes.img} src="https://vibrant-mayer-1ae68b.netlify.app/images/gallery/thumbs/03.jpg" alt={plant.plant_name} />
             </div>
             <div onClick={() => {onPlantClick(plant.id)}} className={classes.bottomWrapper}>
-                <span className="title is-6 has-text-centered">{plant.plant_name}</span>
+                <span className="title is-6 has-text-centered my-1">{plant.plant_name}</span>
+                <div>
+                    <span className="title is-7 has-text-centered">{plant.water_schedule}</span>
+                </div>
             </div>
         </Paper>
     )
