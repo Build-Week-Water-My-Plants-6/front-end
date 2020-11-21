@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import * as yup from "yup"
-import axios from "axios"
+import * as yup from "yup";
+import axios from "axios";
+import { useHistory } from 'react-router-dom';
 
 function Login() {
+    const { push } = useHistory();
+
     // Setup component state for the form management
 
     //initial form state
     const initialFormState = {
-        username:"",
-        password:"",
+        username: "",
+        password: "",
     }
 
     //temp state used to set state
@@ -31,8 +34,6 @@ function Login() {
     const formSchema = yup.object().shape({
         username: yup.string().required("Username is required"),
         password: yup.string().required("Please input your password")
-
-
     })
 
     // inline validation, validation one key/value pair
@@ -69,8 +70,11 @@ function Login() {
         //send out POST request with object as second param (formState)
 
         axios
-        .post('https://reqres.in/api/users', formState)
+        .post('https://water-my-plant-app.herokuapp.com/api/auth/login', {username: formState.username, password: formState.password})
         .then(response => {
+            console.log(response.data)
+            localStorage.setItem('token', response.data.token);
+
             //update temp state with value to display
             setUser(response.data);
 
@@ -79,6 +83,9 @@ function Login() {
 
             //clear any server error
             setServerError(null)
+
+            // push user to the dashboard
+            push('/dashboard');
         })
         .catch(error => {
             setServerError("Some error occurred")

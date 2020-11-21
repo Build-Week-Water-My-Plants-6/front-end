@@ -1,8 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import axiosWithAuth from '../utils/axiosWithAuth';
+
+const initialFormValues = {
+    phonenumber: "",
+    password: ""
+};
 
 function Settings() {
     const { push } = useHistory();
+
+    const [formValues, setFormValues] = useState(initialFormValues);
+
+    function onChange(e) {
+        e.preventDefault();
+        setFormValues({ ...formValues, [e.target.name]: e.target.value });
+    };
+
+    function onSubmit(e) {
+        e.preventDefault();
+    }
+
     return (
         <div className="settings box py-5 px-6">
             <div className="box-header has-text-centered mb-5">

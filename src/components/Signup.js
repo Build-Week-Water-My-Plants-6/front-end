@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import * as yup from "yup"
-import axios from "axios"
+import * as yup from "yup";
+import axios from "axios";
+import { useHistory } from 'react-router-dom';
 
 function Signup() {
+    const { push } = useHistory();
     // Setup component state for the form management
 
     //initial form state
@@ -84,8 +86,11 @@ function Signup() {
         //send out POST request with object as second param (formState)
 
         axios
-        .post('https://reqres.in/api/users', formState)
+        .post('https://water-my-plant-app.herokuapp.com/api/auth/register', formState)
         .then(response => {
+            // set token in local storage
+            localStorage.setItem('token', response.data.token);
+
             //update temp state with value to display
             setUser(response.data);
 
@@ -94,6 +99,10 @@ function Signup() {
 
             //clear any server error
             setServerError(null)
+
+            // push user to the dashboard route
+
+            push('/dashboard');
         })
         .catch(error => {
             setServerError("Some error occurred")
