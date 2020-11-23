@@ -85,7 +85,7 @@ function Login() {
             setServerError(null)
 
             // push user to the dashboard
-            push('/dashboard');
+            push('/');
         })
         .catch(error => {
             setServerError("Some error occurred")
@@ -101,6 +101,10 @@ function Login() {
         };
         validateChange(event);
         setFormState(newUserData)
+    };
+
+    const onSignupClick = () => {
+        push('/signup');
     };
 
 
@@ -133,7 +137,7 @@ function Login() {
                     <div className="control">
                         <input
                         className="input"
-                        type="text" 
+                        type="password"
                         name="password"
                         id="password"
                         onChange={inputChange}
@@ -143,7 +147,7 @@ function Login() {
                         </p> : null}
                     </div>
                 </div>
-                <div className="field is-flex is-justify-content-center mt-5 mb-1">
+                <div className="field is-grouped is-justify-content-center mt-5 mb-1">
                     <div className="control">
                         <button
                         className="button"
@@ -151,6 +155,14 @@ function Login() {
                         disabled={isButtonDisabled}
                         type="submit">
                             Login
+                        </button>
+                    </div>
+                    <div className="control">
+                        <button
+                        className="button is-info"
+                        onClick={onSignupClick}
+                        >
+                            Signup
                         </button>
                     </div>
                 </div>

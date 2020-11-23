@@ -101,8 +101,7 @@ function Signup() {
             setServerError(null)
 
             // push user to the dashboard route
-
-            push('/dashboard');
+            push('/');
         })
         .catch(error => {
             setServerError("Some error occurred")

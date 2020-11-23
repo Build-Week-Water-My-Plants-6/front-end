@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import axiosWithAuth from '../utils/axiosWithAuth';
 
 const initialFormValues = {
     phonenumber: "",
@@ -8,9 +7,8 @@ const initialFormValues = {
 };
 
 function Settings() {
-    const { push } = useHistory();
-
     const [formValues, setFormValues] = useState(initialFormValues);
+    const { push } = useHistory();
 
     function onChange(e) {
         e.preventDefault();
@@ -44,7 +42,7 @@ function Settings() {
                         <button className="button is-primary">Update</button>
                     </div>
                     <div className="control">
-                        <button className="button" onClick={() => push('/dashboard')}>Cancel</button>
+                        <button className="button" onClick={() => push('/')}>Cancel</button>
                     </div>
                 </div>
             </form>
